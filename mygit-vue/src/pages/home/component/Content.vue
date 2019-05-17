@@ -6,12 +6,20 @@
                 <li 
                     v-for="(item, index) in  list" 
                     :key="index"
-                    @click="handleClick">
+                    @click="handleClick(index)">
                  {{item.name}} 
                  </li>
             </ul>
         </div>
-        <div class="right">right</div>
+        <div class="right">
+            <input type="text" v-model="inputValue" >
+            <button @click="btnClick" >提交</button>
+            <ul>
+                <li v-for="item of rLists" :key='item' @click="deleteClick">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 </template>
@@ -23,25 +31,34 @@ props:{
 },
 data () {
     return {
-        //  lists:[
-        //         {
-        //             name:'list1',
-        //             id:'1'
-        //         },
-        //          {
-        //             name:'list2',
-        //             id:'2'
-        //         },
-        //          {
-        //             name:'list3',
-        //             id:'3'
-        //         },
-        //     ]
+        rLists:[],
+     /*     rLists:[
+            {
+                name:'list1',
+                id:'1'
+            },
+                {
+                name:'list2',
+                id:'2'
+            },
+                {
+                name:'list3',
+                id:'3'
+            },
+        ], */
+        inputValue: ''
     }
 },
 methods:{
-    handleClick: function(){
-
+    handleClick: function(index){
+        // alert(this.index)
+    },
+    btnClick:function(){
+        this.rLists.push(this.inputValue)
+        this.inputValue = ''
+    },
+    deleteClick:function(index){
+        // alert(index)
     }
 }
 }
